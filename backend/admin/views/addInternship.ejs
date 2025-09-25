@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - SIH 2025 Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+        <div class="min-h-screen bg-gradient-to-br from-indigo-400 to-purple-600 py-8 px-2">
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div class="bg-gradient-to-br from-indigo-400 to-purple-600 text-white py-8 px-4 text-center">
+                    <h1 class="text-3xl font-bold mb-2">🎯 Add New Internship</h1>
+                    <p class="opacity-90 text-lg">Create opportunities for aspiring professionals</p>
+                </div>
+                <div class="p-8">
+                    <% if (message) { %>
+                        <div class="mb-5 rounded-lg px-4 py-3 bg-green-100 text-green-800 border border-green-300 font-medium">
+                            ✅ <%= message %>
+                        </div>
+                    <% } %>
+                    <% if (error) { %>
+                        <div class="mb-5 rounded-lg px-4 py-3 bg-red-100 text-red-800 border border-red-300 font-medium">
+                            ❌ <%= error %>
+                        </div>
+                    <% } %>
+                    <form action="/admin/add-internship" method="POST">
+                        <div class="mb-6">
+                            <label for="title" class="block mb-2 font-semibold text-gray-700">Internship Title <span class="text-red-500">*</span></label>
+                            <input type="text" id="title" name="title" required placeholder="e.g., Full Stack Developer Intern" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400" />
+                        </div>
+                        <div class="mb-6">
+                            <label for="company" class="block mb-2 font-semibold text-gray-700">Company Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="company" name="company" required placeholder="e.g., Tech Innovations Pvt Ltd" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400" />
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="sector" class="block mb-2 font-semibold text-gray-700">Sector <span class="text-red-500">*</span></label>
+                                <select id="sector" name="sector" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400">
+                                    <option value="">Select Sector</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Design">Design</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Research">Research</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="Operations">Operations</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="location" class="block mb-2 font-semibold text-gray-700">Location <span class="text-red-500">*</span></label>
+                                <input type="text" id="location" name="location" required placeholder="e.g., Mumbai, Remote, Hybrid" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400" />
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="description" class="block mb-2 font-semibold text-gray-700">Job Description <span class="text-red-500">*</span></label>
+                            <textarea id="description" name="description" required placeholder="Describe the internship role, responsibilities, and what the intern will learn..." class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 min-h-[120px] resize-y"></textarea>
+                        </div>
+                        <div class="mb-6">
+                            <label for="required_skills" class="block mb-2 font-semibold text-gray-700">Required Skills</label>
+                            <textarea id="required_skills" name="required_skills" placeholder="e.g., JavaScript, React, Node.js, Communication Skills, Problem Solving..." class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 min-h-[80px] resize-y"></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="duration" class="block mb-2 font-semibold text-gray-700">Duration</label>
+                                <input type="text" id="duration" name="duration" placeholder="e.g., 3 months, 6 months" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400" />
+                            </div>
+                            <div>
+                                <label for="stipend" class="block mb-2 font-semibold text-gray-700">Stipend</label>
+                                <input type="text" id="stipend" name="stipend" placeholder="e.g., ₹15,000/month, Unpaid, Performance Based" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400" />
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold rounded-lg text-lg shadow-md hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 mt-2">
+                            🚀 Add Internship
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        // Add some client-side validation and UX improvements
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const submitBtn = document.querySelector('.btn');
+            
+            form.addEventListener('submit', function() {
+                submitBtn.innerHTML = '⏳ Adding Internship...';
+                submitBtn.disabled = true;
+            });
+
+            // Auto-resize textarea
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = this.scrollHeight + 'px';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

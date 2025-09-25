@@ -1,0 +1,49 @@
+{
+    "users": {
+        "id": "MongoID",
+        "name": "string",
+        "email": "string",
+        "password": "string",
+        "educations": [{
+            "degree": "string",
+            "institution": "string",
+            "completion_year": "integer",
+            "grade": "string"
+        }],
+        "skills": "string",
+        "experiences": [{
+            "company": "string",
+            "role": "string",
+            "start_date": "date",
+            "end_date": "date",
+            "description": "string"
+        }],
+        "projects": [{
+            "title": "string",
+            "description": "string",
+            "link": "string"
+        }],
+        "certifications": [{
+            "name": "string",
+            "issuer": "string",
+            "date": "date"
+        }],
+        "interested_sectors": ["string"],
+        "location": "string",
+        "interested_locations": ["string"],
+        "resume": "file",
+        "created_at": "date"
+    },
+    "internships": {
+        "id": "MongoID",
+        "title": "string",
+        "description": "string",
+        "required_skills": "string",
+        "sector": "string",
+        "location": "string",
+        "duration": "string",
+        "stipend": "string",
+        "company": "string",
+        "posted_at": "date"
+    }
+}
