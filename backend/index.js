@@ -19,6 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 const adminRoutes = require('./admin/routes');
 app.use('/admin', adminRoutes);
 
+// Import auth routes
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 // Basic route
 app.get('/', (req, res) => {
   res.json({
