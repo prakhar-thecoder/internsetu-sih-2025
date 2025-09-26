@@ -17,11 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Import admin routes
 const adminRoutes = require('./admin/routes');
-app.use('/admin', adminRoutes);
-
-// Import auth routes
 const authRoutes = require('./routes/auth');
+const userProfileRoutes = require('./routes/userProfile');
+app.use('/api/admin', adminRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userProfileRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
